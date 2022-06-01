@@ -39,7 +39,7 @@ public class Main
                 game.print();
                 valid = game.move(turn,p.n(1),p.n(2),p.n(3),p.n(3));
             }
-            GridOutput.print(game.print2());
+            
             if(turn == 1)
             {
                 turn = 2;

@@ -20,7 +20,7 @@ public class GridOutput
             panels = new ColorPanel[8][8];
             pane =  myWindow.getContentPane();
             pane.setLayout(new GridLayout(8,8));
-            myWindow.setVisible(true);
+            
             for(int r = 0; r < 8; r++)
             {
                 for(int c = 0; c < 8; c++)
