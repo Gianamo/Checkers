@@ -13,14 +13,18 @@ public class Main
     public static void main(String[] args)
     {
         Board game = new Board();
-        GridOutput o = new GridOutput();
+        game.setSize(800,800);
+        game.setResizable(false);
+        game.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
         int gameWon = 0;
         int turn = 1;
         boolean valid;
         Prompter p = new Prompter();
+        
+        game.setVisible(true);
         while(gameWon == 0)
         {
-            GridOutput.print(game.print2());
             if(turn == 1)
             {
                 System.out.println("Red's's Turn");

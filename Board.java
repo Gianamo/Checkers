@@ -1,9 +1,12 @@
-public class Board
+import javax.swing.*;
+import java.awt.*;
+public class Board extends JFrame
 {
     private Square[][] board = new Square[8][8];
 
     public Board()
     {
+        setLayout(new GridLayout(8,8));
         for(int r = 0; r < 8; r++)
         {
             for(int c = 0; c < 8; c++)
@@ -25,6 +28,12 @@ public class Board
                     board[r][c].setRank(0);
                     board[r][c].setColor(0);
                 }
+            }
+        }
+        
+        for(Square[] row : board) {
+            for(Square col : row) {
+                getContentPane().add(col);
             }
         }
     }
@@ -118,11 +127,6 @@ public class Board
             System.out.println(" _________________");
         }
         System.out.println("  0 1 2 3 4 5 6 7 ");
-    }
-    
-    public Square[][] print2()
-    {
-        return board;
     }
     
     public boolean move(int turn, int sx, int sy, int ex, int ey)
