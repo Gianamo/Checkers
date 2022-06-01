@@ -1,6 +1,8 @@
 
 import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
 /**
  * Write a description of class ColorPanel here.
  *
@@ -8,14 +10,71 @@ import java.awt.*;
  * @version (a version number or a date)
  */
 public class Piece extends JPanel
-{
-    int r;
-    int c;
-    public Piece(int rank, int color)
+{    
+    private JPanel redPiece = new JPanel();
+    private JLabel redPieceIcon = new JLabel();
+    
+    private JPanel blackPiece = new JPanel();
+    private JLabel blackPieceIcon = new JLabel();
+    
+    private JPanel noPiece = new JPanel();
+    
+    private CardLayout cards = new CardLayout();
+    
+    private int r;
+    private int c;
+    private boolean v;
+    public Piece(int rank, int color, boolean valid)
     {
        r = rank;
        c = color;
-       repaint();
+       v= valid;
+       setOpaque(false);
+       setLayout(cards);
+       
+       redPiece.setOpaque(false);
+       redPiece.add(redPieceIcon);
+       redPieceIcon.setIcon(new ImageIcon("RedPiece.png"));
+       
+       blackPiece.setOpaque(false);
+       blackPiece.add(blackPieceIcon);
+       blackPieceIcon.setIcon(new ImageIcon("BlackPiece.png"));
+       
+       noPiece.setOpaque(false);
+       
+       this.add(redPiece, "Red");
+       this.add(blackPiece, "Black");
+       this.add(noPiece, "None");
+        
+       if(r >= 1 && v) 
+       {
+           if(c == 1) 
+           {
+               if(r > 1)
+               {
+                   //red king
+               }
+               else
+               {
+                   cards.show(this, "Red");
+               }
+           }
+           else
+           {
+               if(r > 1)
+               {
+                   //black kind
+               }
+               else
+               {
+                   cards.show(this, "Black");
+               }
+           }
+       }
+       else
+       {
+           cards.show(this, "None");
+       }
     }
     public Piece()
     {
@@ -43,29 +102,27 @@ public class Piece extends JPanel
         
     }
     
-    @Override
-    public void paintComponent(Graphics g)
-    {
-       super.paintComponent(g);
-       Graphics2D g2 = (Graphics2D)g;
-       if(r >= 1)
-       {
-           if(c == 1)
-           {
-               g2.setColor(Color.red);
-           }
-           else
-           {
-               g2.setColor(Color.black);
-           }
-           g2.fillOval(0,0,100,100);
-           if(r > 1)
-           {
-               g2.setColor(Color.yellow);
-               g2.fillOval(25,25,50,50);
-           }
-       }
-    }
 
+    private class PieceDrag extends MouseAdapter 
+    {
+        @Override
+        public void mousePressed(MouseEvent e)
+        {
+            
+        }
+        
+        public void mouseReleased(MouseEvent e)
+        {
+            
+        }
+    }
     
+    private class PieceMotionDrag extends MouseMotionAdapter
+    {
+        @Override
+        public void mouseDragged(MouseEvent e)
+        {
+            
+        }
+    }
 }

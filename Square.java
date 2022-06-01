@@ -14,8 +14,8 @@ public class Square extends JPanel
     
     public Square(int rank, int color, int x, int y)
     {
-        p = new Piece(rank, color);
         isValid = (x + y) % 2 == 1;
+        p = new Piece(rank, color, isValid);
         
         if(isValid) 
         {
@@ -25,14 +25,14 @@ public class Square extends JPanel
         {
             setBackground(Color.black);
         }
-        
+        setLayout(new GridLayout(1,1));
         add(p);
     }
     
     public Square(int rank, int color, boolean valid)
     {
-        p = new Piece(rank, color);
         isValid = valid;
+        p = new Piece(rank, color, isValid);
         
         if(isValid) 
         {
@@ -42,7 +42,7 @@ public class Square extends JPanel
         {
             setBackground(Color.black);
         }
-        
+        setLayout(new GridLayout(1,1));
         add(p);
     }
     
