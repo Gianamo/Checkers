@@ -1,3 +1,7 @@
+import javax.swing.*; //for making windows (Jframe, JPanel)
+import java.awt.*; //for color
+import java.util.*;
+import java.awt.event.*;
 public class Board
 {
     private Square[][] board = new Square[8][8];

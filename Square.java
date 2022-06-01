@@ -1,11 +1,14 @@
-
+import javax.swing.*; //for making windows (Jframe, JPanel)
+import java.awt.*; //for color
+import java.util.*;
+import java.awt.event.*;
 /**
  * Write a description of class Square here.
  *
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Square
+public class Square extends JPanel
 {
     private Piece p = new Piece();
     private boolean isValid;// says whether or not a square is a valid spot to be

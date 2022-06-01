@@ -1,4 +1,7 @@
-
+import javax.swing.*; //for making windows (Jframe, JPanel)
+import java.awt.*; //for color
+import java.util.*;
+import java.awt.event.*;
 public class Piece
 {
     private int rank; //0 for empty, 1 for normal, 2 for king
