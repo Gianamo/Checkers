@@ -12,12 +12,17 @@ public class Main
 {
     public static int turn = 1;
     
+    static Square startSquare = null;
+    static Square endSquare = null;
+    
     public static void main(String[] args)
     {
         Board game = new Board();
         game.setSize(800,800);
         game.setResizable(false);
         game.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        
         
         int gameWon = 0;
         boolean valid;
@@ -35,14 +40,15 @@ public class Main
                 System.out.println("Black's Turn");
             }
             
-       
-            valid = game.move(turn,p.n(1),p.n(2),p.n(3),p.n(3));
+            endSquare = null;
+            while(endSquare == null) {}
+            
+            valid = game.move(turn, startSquare.getX(),startSquare.getY(),endSquare.getX(),endSquare.getY());
             while(!valid)
             {
-                
-                System.out.println("Move invalid. Try again");
-                game.print();
-                valid = game.move(turn,p.n(1),p.n(2),p.n(3),p.n(3));
+                endSquare = null;
+                while(endSquare == null) {}
+                valid = game.move(turn, startSquare.getX(),startSquare.getY(),endSquare.getX(),endSquare.getY());
             }
             
             if(turn == 1)
