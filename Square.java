@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 /**
  * Write a description of class Square here.
@@ -10,6 +11,7 @@ import java.awt.*;
 public class Square extends JPanel
 {
     private Piece p;
+    public static boolean pieceSelected = false;
     private boolean isValid;// says whether or not a square is a valid spot to be
     
     public Square(int rank, int color, int x, int y)
@@ -27,6 +29,8 @@ public class Square extends JPanel
         }
         setLayout(new GridLayout(1,1));
         add(p);
+        
+        addMouseListener(new ClickListener());
     }
     
     public Square(int rank, int color, boolean valid)
@@ -34,16 +38,11 @@ public class Square extends JPanel
         isValid = valid;
         p = new Piece(rank, color, isValid);
         
-        if(isValid) 
-        {
-            setBackground(Color.white);
-        }
-        else 
-        {
-            setBackground(Color.black);
-        }
+        setGameBackground();
+        
         setLayout(new GridLayout(1,1));
         add(p);
+        addMouseListener(new ClickListener());
     }
     
     public int getColor()
@@ -71,6 +70,18 @@ public class Square extends JPanel
         return isValid;
     }
     
+    public void setGameBackground() 
+    {
+        if(isValid) 
+        {
+            setBackground(Color.white);
+        }
+        else 
+        {
+            setBackground(Color.black);
+        }
+    }
+    
     public Square copy()
     {
         Square x = new Square(p.getRank(), p.getColor(), isValid);
@@ -81,5 +92,47 @@ public class Square extends JPanel
     {
         this.setRank(0);
         this.setColor(0);
+    }
+    
+    private class ClickListener extends MouseAdapter
+    {
+        @Override
+        public void mousePressed(MouseEvent e)
+        {
+            Square temp = (Square) e.getSource();
+            
+            if(pieceSelected) 
+            {
+                resetBackground();
+            }
+            
+            if(temp.getColor() == 1 && Main.turn == 1) 
+            {
+                temp.setBackground(Color.yellow);
+                pieceSelected = true;
+            }
+            else if (temp.getColor() == 2 && Main.turn == 2)
+            {
+                temp.setBackground(Color.yellow);
+                pieceSelected = true;
+            }
+            else
+            {
+                resetBackground();
+            }
+        }
+        
+        public void resetBackground() 
+        {
+            for(Square[] row : Board.board) {
+                for(Square col : row) {
+                    if(col.getBackground().equals(Color.yellow)) {
+                            col.setGameBackground();
+                            pieceSelected = false;
+                            return;
+                    }
+                }
+            }
+        }
     }
 }

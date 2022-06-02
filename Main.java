@@ -10,6 +10,8 @@ import java.awt.event.*;
  */
 public class Main
 {
+    public static int turn = 1;
+    
     public static void main(String[] args)
     {
         Board game = new Board();
@@ -18,7 +20,6 @@ public class Main
         game.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         int gameWon = 0;
-        int turn = 1;
         boolean valid;
         Prompter p = new Prompter();
         
