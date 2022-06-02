@@ -12,7 +12,7 @@ public class Square extends JPanel
     private Piece p;
     private boolean isValid;// says whether or not a square is a valid spot to be
     
-    public Square(int rank, int color, int x, int y, int backColor)
+    public Square(int rank, int color, int x, int y)
     {
         isValid = (x + y) % 2 == 1;
         p = new Piece(rank, color, isValid);
@@ -82,29 +82,4 @@ public class Square extends JPanel
         this.setRank(0);
         this.setColor(0);
     }
-
-    @Override
-    public void paintComponent(Graphics g)
-    {
-       super.paintComponent(g);
-       Graphics2D g2 = (Graphics2D)g;
-       if(r >= 1)
-       {
-           if(c == 1)
-           {
-               g2.setColor(Color.red);
-           }
-           else
-           {
-               g2.setColor(Color.black);
-           }
-           g2.fillOval(0,0,100,100);
-           if(r > 1)
-           {
-               g2.setColor(Color.yellow);
-               g2.fillOval(25,25,50,50);
-           }
-       }
-    }
-
 }
