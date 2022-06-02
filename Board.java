@@ -3,10 +3,12 @@ import java.awt.*;
 public class Board extends JFrame
 {
     private Square[][] board = new Square[8][8];
-
+    private JLayeredPane pane = new JLayeredPane();
+    private JPanel boardPanel = new JPanel(new GridLayout(8,8));
+    private JPanel piecePanel = new JPanel(new GridLayout(8,8));
+    
     public Board()
     {
-        setLayout(new GridLayout(8,8));
         for(int r = 0; r < 8; r++)
         {
             for(int c = 0; c < 8; c++)
@@ -31,11 +33,16 @@ public class Board extends JFrame
             }
         }
         
+        
         for(Square[] row : board) {
             for(Square col : row) {
-                getContentPane().add(col);
+                boardPanel.add(col);
             }
         }
+        
+        
+        pane.add(boardPanel, 0);
+        getContentPane().add(pane);
     }
 
     private boolean isMoveValid(int turn, int sx, int sy, int ex, int ey)
