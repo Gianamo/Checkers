@@ -1,17 +1,18 @@
-
+import java.awt.*;
 /**
  * Write a description of class Square here.
  *
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Square
+public class Square extends ColorPanel
 {
     private Piece p = new Piece();
     private boolean isValid;// says whether or not a square is a valid spot to be
     
-    public Square(int rank, int color, int x, int y)
+    public Square(int rank, int color, int x, int y, int backColor)
     {
+        super.(backColor);
         p.setRank(rank);
         p.setColor(color);
         isValid = (x + y) % 2 == 1;
@@ -60,4 +61,29 @@ public class Square
         this.setRank(0);
         this.setColor(0);
     }
+
+    @Override
+    public void paintComponent(Graphics g)
+    {
+       super.paintComponent(g);
+       Graphics2D g2 = (Graphics2D)g;
+       if(r >= 1)
+       {
+           if(c == 1)
+           {
+               g2.setColor(Color.red);
+           }
+           else
+           {
+               g2.setColor(Color.black);
+           }
+           g2.fillOval(0,0,100,100);
+           if(r > 1)
+           {
+               g2.setColor(Color.yellow);
+               g2.fillOval(25,25,50,50);
+           }
+       }
+    }
+
 }

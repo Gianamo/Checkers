@@ -1,4 +1,6 @@
-public class Board
+import javax.swing.*;
+
+public class Board extends JPanel
 {
     private Square[][] board = new Square[8][8];
 
