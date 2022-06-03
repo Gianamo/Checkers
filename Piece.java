@@ -14,8 +14,14 @@ public class Piece extends JPanel
     private JPanel redPiece = new JPanel();
     private JLabel redPieceIcon = new JLabel();
     
+    private JPanel redKing = new JPanel();
+    private JLabel redKingIcon = new JLabel();
+    
     private JPanel blackPiece = new JPanel();
     private JLabel blackPieceIcon = new JLabel();
+    
+    private JPanel blackKing = new JPanel();
+    private JLabel blackKingIcon = new JLabel();
     
     private JPanel noPiece = new JPanel();
     
@@ -36,14 +42,24 @@ public class Piece extends JPanel
        redPiece.add(redPieceIcon);
        redPieceIcon.setIcon(new ImageIcon("RedPiece.png"));
        
+       redKing.setOpaque(false);
+       redKing.add(redKingIcon);
+       redKingIcon.setIcon(new ImageIcon("RedKing.png"));
+       
        blackPiece.setOpaque(false);
        blackPiece.add(blackPieceIcon);
        blackPieceIcon.setIcon(new ImageIcon("BlackPiece.png"));
+       
+       blackKing.setOpaque(false);
+       blackKing.add(blackKingIcon);
+       blackKingIcon.setIcon(new ImageIcon("BlackKing.png"));
        
        noPiece.setOpaque(false);
        
        this.add(redPiece, "Red");
        this.add(blackPiece, "Black");
+       this.add(redKing, "RedKing");
+       this.add(blackKing, "BlackKing");
        this.add(noPiece, "None");
         
        updatePiece();
@@ -82,7 +98,7 @@ public class Piece extends JPanel
            {
                if(r > 1)
                {
-                   //red king
+                   cards.show(this, "RedKing");
                }
                else
                {
@@ -93,7 +109,7 @@ public class Piece extends JPanel
            {
                if(r > 1)
                {
-                   //black kind
+                   cards.show(this, "BlackKing");
                }
                else
                {
