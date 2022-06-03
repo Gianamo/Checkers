@@ -11,61 +11,74 @@ import java.awt.event.*;
 public class Main
 {
     public static int turn = 1;
-    
+
     static Square startSquare = null;
     static Square endSquare = null;
-    
+    static Board game = new Board();
+
     public static void main(String[] args)
     {
-        Board game = new Board();
         game.setSize(800,800);
         game.setResizable(false);
         game.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        
-        
+
         int gameWon = 0;
         boolean valid;
         Prompter p = new Prompter();
-        
+
         game.setVisible(true);
-        while(gameWon == 0)
+    }
+
+    public static void startRound()
+    {
+        if(turn == 1)
         {
-            if(turn == 1)
-            {
-                System.out.println("Red's's Turn");
-            }
-            else if(turn == 2)
-            {
-                System.out.println("Black's Turn");
-            }
-            
-            endSquare = null;
-            while(endSquare == null) {}
-            
-            valid = game.move(turn, startSquare.getX(),startSquare.getY(),endSquare.getX(),endSquare.getY());
-            while(!valid)
-            {
-                endSquare = null;
-                while(endSquare == null) {}
-                valid = game.move(turn, startSquare.getX(),startSquare.getY(),endSquare.getX(),endSquare.getY());
-            }
-            
-            if(turn == 1)
-            {
-                turn = 2;
-            }
-            else if(turn == 2)
-            {
-                turn = 1;
-            }
-            gameWon = game.gameWinner();
+            System.out.println("Red's's Turn");
         }
-        if (gameWon == 1)
+        else if(turn == 2)
+        {
+            System.out.println("Black's Turn");
+        }
+    }
+
+    /**
+     * Precondition: startSquare and endSquare must not be null
+     */
+    public static void move()
+    {
+        boolean move = game.move(turn, startSquare.getRow(),startSquare.getCol(),endSquare.getRow(),endSquare.getCol());
+        System.out.println(move);
+        if(!move) 
+        {
+            endSquare = null;
+            startSquare = null;
+            return;  
+        }
+        
+        if(turn == 1)
+        {
+            turn = 2;
+        }
+        else if(turn == 2)
+        {
+            turn = 1;
+        }
+        
+        int gameWon = game.gameWinner();
+        
+        if(gameWon > 0) gameWin(gameWon);
+        
+        endSquare = null;
+        startSquare = null;
+    }
+    
+    public static void gameWin(int gameStatus) 
+    {
+        if (gameStatus == 1)
         {
             System.out.println("Red Wins");
         }
-        else if (gameWon == 2)
+        else if (gameStatus == 2)
         {
             System.out.println("Black Wins");
         }
@@ -73,6 +86,5 @@ public class Main
         {
             System.out.println("You broke it");
         }
-
     }
 }

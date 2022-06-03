@@ -134,16 +134,21 @@ public class Board extends JFrame
         boolean bruh = isMoveValid(turn, sx, sy, ex, ey);
         if(isMoveValid(turn, sx, sy, ex, ey))
         {
-            board[ex][ey]= board[sx][sy].copy();
+            board[ex][ey].setColor(board[sx][sy].getColor());
+            board[ex][ey].setRank(board[sx][sy].getRank());
             board[sx][sy].reset();
             if(isAttack(sx, sy, ex, ey))
             {
                 board[(sx+ex)/2][(sy+ey)/2].reset();
+                board[(sx+ex)/2][(sy+ey)/2].getPiece().updatePiece();
             }
             if((turn == 1 && ex == 7)||(turn == 2 && ex == 0))
             {
                 makeKing(ex, ey);
             }
+            
+            board[ex][ey].getPiece().updatePiece();
+            board[sx][sy].getPiece().updatePiece();
         }
         return bruh;
     }

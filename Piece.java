@@ -46,7 +46,37 @@ public class Piece extends JPanel
        this.add(blackPiece, "Black");
        this.add(noPiece, "None");
         
-       if(r >= 1 && v) 
+       updatePiece();
+    }
+    public Piece()
+    {
+        
+    }
+    
+    public int getRank() {
+        return r;
+    }
+    public int getColor() {
+        return c;
+    }
+    
+    public void setRank(int r) {
+        this.r = r;
+    }
+    public void setColor(int c) {
+        this.c = c;
+    }
+    
+    public void setBRnC(int rank, int color)
+    {
+        r = rank;
+        c = color;
+        
+    }
+    
+    public void updatePiece()
+    {
+        if(r >= 1 && v) 
        {
            if(c == 1) 
            {
@@ -75,54 +105,5 @@ public class Piece extends JPanel
        {
            cards.show(this, "None");
        }
-    }
-    public Piece()
-    {
-        
-    }
-    
-    public int getRank() {
-        return r;
-    }
-    public int getColor() {
-        return c;
-    }
-    
-    public void setRank(int r) {
-        this.r = r;
-    }
-    public void setColor(int c) {
-        this.c = c;
-    }
-    
-    public void setBRnC(int rank, int color)
-    {
-        r = rank;
-        c = color;
-        
-    }
-    
-
-    private class PieceDrag extends MouseAdapter 
-    {
-        @Override
-        public void mousePressed(MouseEvent e)
-        {
-            
-        }
-        
-        public void mouseReleased(MouseEvent e)
-        {
-            
-        }
-    }
-    
-    private class PieceMotionDrag extends MouseMotionAdapter
-    {
-        @Override
-        public void mouseDragged(MouseEvent e)
-        {
-            
-        }
     }
 }

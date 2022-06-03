@@ -13,9 +13,14 @@ public class Square extends JPanel
     private Piece p;
     public static boolean pieceSelected = false;
     private boolean isValid;// says whether or not a square is a valid spot to be
-
+    
+    private final int x;
+    private final int y;
     public Square(int rank, int color, int x, int y)
     {
+        this.x = x;
+        this.y = y;
+        
         isValid = (x + y) % 2 == 1;
         p = new Piece(rank, color, isValid);
         setGameBackground();
@@ -26,9 +31,11 @@ public class Square extends JPanel
         addMouseListener(new ClickListener());
     }
 
-    public Square(int rank, int color, boolean valid)
+    public Square(int rank, int color, boolean valid, int x, int y)
     {
-
+        this.x = x;
+        this.y = y;
+        
         isValid = valid;
         p = new Piece(rank, color, isValid);
         setGameBackground();
@@ -47,6 +54,16 @@ public class Square extends JPanel
     {
         return p.getRank();
     }
+    
+    public int getRow()
+    {
+        return x;
+    }
+    
+    public int getCol()
+    {
+        return y;
+    }
 
     public void setColor(int c)
     {
@@ -62,6 +79,11 @@ public class Square extends JPanel
     {
         return isValid;
     }
+    
+    public Piece getPiece() 
+    {
+        return p;
+    }
 
     public void setGameBackground() 
     {
@@ -75,11 +97,6 @@ public class Square extends JPanel
         }
     }
 
-    public Square copy()
-    {
-        Square x = new Square(p.getRank(), p.getColor(), isValid);
-        return x;
-    }
 
     public void reset()
     {
@@ -97,19 +114,36 @@ public class Square extends JPanel
             if(pieceSelected) 
             {
                 resetBackground();
-                Main.endSquare = temp;
+                if(temp.getColor() == 0 && isValid)
+                {
+                    Main.endSquare = temp;
+                }
             }
-
-            if(isValid) 
+            System.out.println();
+            System.out.println("End Square: " + Main.endSquare);
+            if(isValid && !pieceSelected) 
             {
                 if(temp.getColor() == Main.turn) 
                 {
                     temp.setBackground(Color.yellow);
                     pieceSelected = true;
                     Main.startSquare = temp;
-                    //System.out.println(Main.startSquare);
+                }
+                else if(Main.endSquare == null)
+                {
+                    Main.startSquare = null;
                 }
             }
+            System.out.println();
+            System.out.println("Start Square: " + Main.startSquare);
+            System.out.println("End Square: " + Main.endSquare);
+            if(Main.startSquare != null && Main.endSquare != null)
+            {
+                Main.move();
+            }
+            System.out.println();
+            System.out.println("Start Square: " + Main.startSquare);
+            System.out.println("End Square: " + Main.endSquare);
         }
 
         public void resetBackground() 
@@ -119,7 +153,6 @@ public class Square extends JPanel
                     if(col.getBackground().equals(Color.yellow)) {
                         col.setGameBackground();
                         pieceSelected = false;
-                        Main.startSquare = null;
                         return;
                     }
                 }
