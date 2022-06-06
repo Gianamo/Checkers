@@ -167,9 +167,9 @@ public class Board extends JFrame
     {
         boolean isWDed = true;
         boolean isBDed = true;
-        for(int x = 0; x < 7; x++)
+        for(int x = 0; x < 8; x++)
         {
-            for(int y = 0; y < 7; y++)
+            for(int y = 0; y < 8; y++)
             {
                 if (board[x][y].getColor()== 1)
                 {

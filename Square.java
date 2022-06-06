@@ -119,8 +119,7 @@ public class Square extends JPanel
                     Main.endSquare = temp;
                 }
             }
-            System.out.println();
-            System.out.println("End Square: " + Main.endSquare);
+            
             if(isValid && !pieceSelected) 
             {
                 if(temp.getColor() == Main.turn) 
@@ -134,16 +133,12 @@ public class Square extends JPanel
                     Main.startSquare = null;
                 }
             }
-            System.out.println();
-            System.out.println("Start Square: " + Main.startSquare);
-            System.out.println("End Square: " + Main.endSquare);
+            
             if(Main.startSquare != null && Main.endSquare != null)
             {
                 Main.move();
             }
-            System.out.println();
-            System.out.println("Start Square: " + Main.startSquare);
-            System.out.println("End Square: " + Main.endSquare);
+            
         }
 
         public void resetBackground() 

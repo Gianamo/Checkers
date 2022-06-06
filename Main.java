@@ -24,7 +24,6 @@ public class Main
 
         int gameWon = 0;
         boolean valid;
-        Prompter p = new Prompter();
 
         game.setVisible(true);
     }
@@ -47,7 +46,7 @@ public class Main
     public static void move()
     {
         boolean move = game.move(turn, startSquare.getRow(),startSquare.getCol(),endSquare.getRow(),endSquare.getCol());
-        System.out.println(move);
+
         if(!move) 
         {
             endSquare = null;
